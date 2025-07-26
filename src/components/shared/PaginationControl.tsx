@@ -6,7 +6,6 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-import type { SetStateAction } from "react";
 
 type PaginationCtrlProps = {
   page: number;

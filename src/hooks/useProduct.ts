@@ -189,5 +189,5 @@ export const useProductManagement = ({
     setFilter((prev) => ({ ...prev, [name]: value }));
   };
 
-  return { setSearch, filter, handleFilter };
+  return { setSearch, filter, handleFilter, search };
 };

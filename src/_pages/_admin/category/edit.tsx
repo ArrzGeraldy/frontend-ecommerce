@@ -15,7 +15,7 @@ const CategoryEdit = () => {
     name: "",
     parent_id: null,
   });
-  const { data: parents, isLoading: parentsLoading } = useCategories({
+  const { data: parents } = useCategories({
     limit: 100,
     type: "parent",
   });

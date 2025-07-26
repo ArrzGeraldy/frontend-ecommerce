@@ -15,7 +15,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import ButtonLoader from "@/components/shared/ButtonLoader";
 import toast from "react-hot-toast";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 type FormDataType = {
   name: string;

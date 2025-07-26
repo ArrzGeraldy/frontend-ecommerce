@@ -1,7 +1,5 @@
-import { SortProductComboBox } from "@/components/admin/product/SortProductComboBox";
 import ProductCard from "@/components/product/ProductCard";
 import ProductGridSkeleton from "@/components/product/ProductGridSkeleton";
-import ProductBanner from "@/components/ProductBanner";
 import PaginationControl from "@/components/shared/PaginationControl";
 import SearchInput from "@/components/shared/SearchInput";
 import SidebarProductGrid from "@/components/shared/SidebarProductGrid";
@@ -23,7 +21,7 @@ const sortValues = [
 ];
 
 const Products = () => {
-  const { filter, handleFilter, setSearch } = useProductManagement({
+  const { filter, handleFilter } = useProductManagement({
     limit: 8,
   });
   const { category } = useParams();
@@ -36,7 +34,7 @@ const Products = () => {
     category: filter.category,
   });
 
-  const { data: childrens, isLoading: childrensLoading } = useCategories({
+  const { data: childrens } = useCategories({
     limit: 50,
     ...(category && { type: "children-by-slug", slug: category }),
   });

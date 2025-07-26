@@ -7,9 +7,7 @@ import Women from "@/assets/women.png";
 import WomenClctn from "@/assets/women-crop.png";
 import Men from "@/assets/men-bg-2.png";
 
-import BannerOne from "@/assets/banner01.png";
 import sepatu from "@/assets/sepatu.png";
-import kemeja from "@/assets/kemeja.png";
 
 import Prev from "@/assets/prev.png";
 import Prevglasses from "@/assets/prev-glasses.png";
