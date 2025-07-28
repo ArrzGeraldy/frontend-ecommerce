@@ -47,7 +47,7 @@ const Order = () => {
       address: {
         city: selectedAddress.city,
         phone: selectedAddress.phone,
-        postal_code: selectedAddress.phone,
+        postal_code: selectedAddress.postal_code,
         province: selectedAddress.phone,
         recipient_name: selectedAddress.recipient_name,
         ...(selectedAddress.detail && { detail: selectedAddress.detail }),
