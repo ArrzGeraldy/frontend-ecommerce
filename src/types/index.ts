@@ -45,6 +45,10 @@ export type Variant = {
   deleted_at: null | string;
 };
 
+export interface VariantWithProduct extends Variant {
+  product: Product;
+}
+
 export type FormDataProductType = {
   name: string;
   description: string;
@@ -81,4 +85,98 @@ export type ProductsQuery = {
   search: string;
   parent: string;
   category?: number;
+};
+
+export type CartAddType = {
+  product_variant_id: number;
+  quantity: number;
+};
+
+export type CartItemType = {
+  id: number;
+  user_id: number;
+  product_variant_id: number;
+  quantity: number;
+  created_at: string;
+  product_variant: VariantWithProduct;
+  amount: number;
+};
+
+export type OrderCreateType = {
+  items: Array<{
+    product_variant_id: number;
+    quantity: number;
+  }>;
+};
+
+export type PaymentType = {
+  id: number;
+  order_id: string;
+  method: string;
+  bank: string;
+  va_number: string;
+  status: string;
+  created_at: string; // ISO date string
+  updated_at: string;
+  expiry_time: string;
+};
+
+export type OrderItemType = {
+  id: number;
+  order_id: number;
+  product_variant_id: number;
+  quantity: number;
+  amount: number;
+  created_at: string;
+  product_variant: {
+    name: string;
+    product: {
+      name: string;
+      price: number;
+      discount: number | null;
+      img_url: string;
+    };
+  };
+};
+export type OrderType = {
+  id: string;
+  user_id: number;
+  base_price: number;
+  final_price: number;
+  status: string;
+  created_at: string;
+  updated_at: string;
+  order_items: OrderItemType[];
+
+  payment: null;
+  shipping: null;
+};
+
+export type AddressType = {
+  id: number;
+  user_id: number;
+  recipient_name: string;
+  phone: string;
+  province: string;
+  city: string;
+  postal_code: string;
+  detail?: string;
+  is_primary: boolean;
+  deleted_at?: Date;
+  created_at: Date;
+};
+
+export type AddressCreateType = {
+  recipient_name: string;
+  phone: string;
+  province: string;
+  city: string;
+  postal_code: string;
+  detail?: string;
+};
+
+export type OrderCreatePaymentType = {
+  shipping_courier: string;
+  bank: string;
+  address: AddressCreateType;
 };

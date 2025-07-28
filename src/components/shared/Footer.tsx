@@ -21,7 +21,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="w-full wrapper py-10 mt-8">
+    <footer className="w-full wrapper py-10 mt-8 border-t">
       <div className="grid sm:grid-cols-3 lg:grid-cols-4 md:gap-4 gap-4">
         {/* Account */}
         <div>

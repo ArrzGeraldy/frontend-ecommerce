@@ -2,7 +2,6 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./_pages/Home";
 import Login from "./_pages/_auth/Login";
 import ProtectedRoute from "./layouts/ProtectedRoute";
-import Protec from "./_pages/_protected/Protec";
 import Admin from "./_pages/_admin/Admin";
 import Signup from "./_pages/_auth/Signup";
 import MainLayout from "./layouts/MainLayout";
@@ -15,6 +14,10 @@ import AdminProduct from "./_pages/_admin/product";
 import CreateProduct from "./_pages/_admin/product/CreateProduct";
 import StoreLayout from "./layouts/StoreLayout";
 import Products from "./_pages/Products";
+import Cart from "./_pages/_protected/Cart";
+import ProductDetail from "./_pages/ProductDetail";
+import Order from "./_pages/_protected/Order";
+import Payment from "./_pages/_protected/Payment";
 
 function App() {
   return (
@@ -29,12 +32,16 @@ function App() {
         {/* Store */}
         <Route element={<StoreLayout />}>
           <Route element={<Home />} index />
-          <Route element={<Products />} path="/products/:category" />
+          <Route element={<Products />} path="/products/:parent" />
+          <Route element={<ProductDetail />} path="/product/:id" />
+          <Route element={<ProtectedRoute />}>
+            <Route element={<Cart />} path="/cart" />
+            <Route element={<Order />} path="/order/:id" />
+            <Route element={<Payment />} path="/payment/:id" />
+          </Route>
         </Route>
 
         <Route element={<ProtectedRoute />}>
-          <Route element={<Protec />} path="/protec" />
-
           <Route element={<AdminLayout />} path="/admin/*">
             <Route element={<Admin />} index />
             {/* products */}

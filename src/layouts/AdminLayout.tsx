@@ -1,12 +1,14 @@
 import { Outlet, useLocation } from "react-router-dom";
 import AdminGuard from "./AdminGuard";
-import LogoDark from "@/assets/logo/logo-dark.png";
+import LogoDark from "@/assets/logo/logo-dark.svg";
+import LogoLight from "@/assets/logo/logo-light.svg";
 import { Box, LayoutGrid, Search, Settings, Tags } from "lucide-react";
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { PanelLeftIcon } from "lucide-react";
 import ThemeButton from "@/components/shared/ThemeButton";
 import { useEffect, useRef, useState } from "react";
+import { useTheme } from "@/context/theme-provider";
 
 // Menu items.
 const items = [
@@ -38,6 +40,7 @@ const items = [
 ];
 
 const AdminLayout = () => {
+  const { theme } = useTheme();
   const { pathname } = useLocation();
   const [open, setOpen] = useState(window.innerWidth > 1024);
   const [isSizeMobile, setIsSizeMobile] = useState(window.innerWidth < 1024);
@@ -96,8 +99,12 @@ const AdminLayout = () => {
           )}
         >
           <div className="flex gap-2 items-center  px-4">
-            <img src={LogoDark} width={25} />
-            <h1 className="text-xl font-semibold">Acmec Inc.</h1>
+            <img
+              src={theme === "light" ? LogoDark : LogoLight}
+              alt="logo"
+              width={22}
+            />
+            <h1 className="text-xl font-semibold">Bazario</h1>
           </div>
 
           <div className="flex flex-col gap-3 mt-4 px-2">

@@ -1,10 +1,16 @@
 import { calculateDiscount, toRupiah } from "@/lib/utils";
 import type { Product } from "@/types";
 import { Search, ShoppingCartIcon } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
 
 const ProductCard = ({ product }: { product: Product }) => {
+  const navigate = useNavigate();
+
   return (
-    <div className="group cursor-pointer relative overflow-hidden ">
+    <Link
+      to={`/product/${product.id}`}
+      className="group cursor-pointer relative overflow-hidden "
+    >
       {product.discount && (
         <div className="text-xs absolute top-3 left-2 z-10  text-white bg-red-500 font-semibold px-2 py-1 rounded-sm ">
           -{product.discount}%
@@ -13,10 +19,14 @@ const ProductCard = ({ product }: { product: Product }) => {
 
       <div className="absolute top-2 right-2 z-10">
         <div className="bg-white text-black p-2 rounded-full translate-x-30 group-hover:translate-0 ease-in duration-300 hover:bg-white/90">
-          <Search className="size-5" />
+          <button onClick={() => navigate(`/product/${product.id}`)}>
+            <Search className="size-5" />
+          </button>
         </div>
         <div className="bg-white text-black p-2 rounded-full mt-2 translate-x-30 group-hover:translate-0 ease-in duration-500 hover:bg-white/90">
-          <ShoppingCartIcon className="size-5" />
+          <button onClick={() => navigate(`/product/${product.id}`)}>
+            <ShoppingCartIcon className="size-5" />
+          </button>
         </div>
       </div>
       <div className="h-64 w-full relative rounded-md overflow-hidden bg-muted ">
@@ -39,7 +49,7 @@ const ProductCard = ({ product }: { product: Product }) => {
           </div>
         )}
       </div>
-    </div>
+    </Link>
   );
 };
 

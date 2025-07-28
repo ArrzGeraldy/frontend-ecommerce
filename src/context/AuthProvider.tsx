@@ -4,7 +4,6 @@ import {
   type ReactNode,
   type Dispatch,
   type SetStateAction,
-  useEffect,
 } from "react";
 import type { AuthType } from "../types";
 import { useAxiosInterceptors } from "../hooks/useAxiosInterceptors ";
@@ -23,9 +22,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   useAxiosInterceptors();
 
-  useEffect(() => {
-    console.log({ auth });
-  }, [auth]);
+  // useEffect(() => {
+  //   console.log({ auth });
+  // }, [auth]);
 
   return (
     <AuthContext.Provider value={{ auth, setAuth }}>

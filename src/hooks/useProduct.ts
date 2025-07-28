@@ -2,7 +2,11 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import useAuth from "./useAuth.js";
 import { api, handleAxiosError } from "@/lib/axios.js";
 import { useCallback, useEffect, useState } from "react";
-import type { FormDataProductType, ProductsQuery } from "@/types/index.js";
+import type {
+  FormDataProductType,
+  Product,
+  ProductsQuery,
+} from "@/types/index.js";
 
 export const useProducts = ({
   page = 1,
@@ -39,6 +43,24 @@ export const useProducts = ({
   });
 
   return { data, isLoading, refetch };
+};
+
+export const useProduct = (id: string | undefined) => {
+  // const { auth } = useAuth();
+  const { data, isLoading } = useQuery<Product>({
+    queryKey: ["product", id],
+    queryFn: async () => {
+      try {
+        const res = await api.get(`/products/${id}`);
+        return res.data.data;
+      } catch (error) {
+        handleAxiosError(error);
+      }
+    },
+    enabled: !!id,
+  });
+
+  return { data, isLoading };
 };
 
 export const useCreateProduct = () => {

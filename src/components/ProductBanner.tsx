@@ -3,6 +3,7 @@ import BannerOne from "@/assets/banner01.png";
 import sepatu from "@/assets/sepatu.png";
 import kemeja from "@/assets/kemeja.png";
 import { Button } from "./ui/button";
+import { toRupiah } from "@/lib/utils";
 
 const ProductBanner = () => {
   return (
@@ -35,9 +36,9 @@ const ProductBanner = () => {
           <div className="h-[1px] w-full bg-primary scale-0 group-hover:scale-100 ease-in duration-200 origin-left"></div>
         </div>
         <div className="flex gap-2 items-center mt-1">
-          <div className="text-lg font-semibold">$126.50</div>
+          <div className="text-lg font-semibold">{toRupiah(126500)}</div>
           <div className="text-sm line-through text-muted-foreground">
-            $155.00
+            {toRupiah(155000)}
           </div>
         </div>
       </div>
@@ -60,9 +61,9 @@ const ProductBanner = () => {
           <div className="h-[1px] w-full bg-primary scale-0 group-hover:scale-100 ease-in duration-200 origin-left"></div>
         </div>
         <div className="flex gap-2 items-center mt-1">
-          <div className="text-lg font-semibold">$126.50</div>
+          <div className="text-lg font-semibold">{toRupiah(126500)}</div>
           <div className="text-sm line-through text-muted-foreground">
-            $155.00
+            {toRupiah(155000)}
           </div>
         </div>
       </div>

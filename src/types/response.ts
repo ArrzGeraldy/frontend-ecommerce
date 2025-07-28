@@ -1,3 +1,5 @@
+import type { Product } from ".";
+
 export interface BaseCategory {
   id: number;
   name: string;
@@ -22,3 +24,7 @@ export interface CategoryTreeType extends BaseCategory {
   parent?: BaseCategory | null;
   children: BaseCategory[];
 }
+
+export type ProductResponse = {
+  data: Product;
+};

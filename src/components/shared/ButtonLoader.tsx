@@ -15,7 +15,7 @@ const ButtonLoader = ({
   ...props
 }: ButtonLoaderProps) => {
   return (
-    <Button className={cn("w-full mt-6", className)} {...props}>
+    <Button className={cn("w-full", className)} {...props}>
       {props.disabled ? (
         <>
           <svg

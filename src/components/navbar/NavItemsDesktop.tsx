@@ -7,12 +7,17 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import { useCategories } from "@/hooks/useCategory";
 import type { CategoryTreeType } from "@/types/response";
 import { Link } from "react-router-dom";
 import { Skeleton } from "../ui/skeleton";
-const NavItemsDesktop = () => {
-  const { data, isLoading } = useCategories({ limit: 10, type: "tree" });
+
+type NavItemProps = {
+  categories: CategoryTreeType[];
+  isLoading: boolean;
+};
+
+const NavItemsDesktop = ({ categories, isLoading }: NavItemProps) => {
+  // const { data, isLoading } = useCategories({ limit: 10, type: "tree" });
 
   if (isLoading) {
     return Array.from({ length: 4 }).map((_, i) => (
@@ -28,8 +33,8 @@ const NavItemsDesktop = () => {
           </NavigationMenuLink>
         </NavigationMenuItem>
 
-        {data?.data &&
-          data?.data.map((category: CategoryTreeType) => (
+        {categories &&
+          categories.map((category: CategoryTreeType) => (
             <NavigationMenuItem key={category.id}>
               <NavigationMenuTrigger>{category.name}</NavigationMenuTrigger>
               <NavigationMenuContent>
@@ -42,7 +47,11 @@ const NavItemsDesktop = () => {
                   {category.children.map((c) => (
                     <li>
                       <NavigationMenuLink asChild>
-                        <Link to={"#"}>{c.name}</Link>
+                        <Link
+                          to={`/products/${category.slug}?category=${c.id}`}
+                        >
+                          {c.name}
+                        </Link>
                       </NavigationMenuLink>
                     </li>
                   ))}
