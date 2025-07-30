@@ -22,7 +22,7 @@ const ProductSection = () => {
     search: filter.search,
   });
   return (
-    <section className="pt-24 w-full wrapper">
+    <section id="newest" className="pt-24 w-full wrapper">
       <h1 className="text-center text-2xl lg:text-4xl font-semibold">
         This week's highlights
       </h1>

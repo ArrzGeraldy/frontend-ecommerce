@@ -98,14 +98,14 @@ const AdminLayout = () => {
             open ? "lg:translate-x-0" : "-translate-x-full lg:-translate-x-64"
           )}
         >
-          <div className="flex gap-2 items-center  px-4">
+          <Link to={"/"} className="flex gap-2 items-center  px-4">
             <img
               src={theme === "light" ? LogoDark : LogoLight}
               alt="logo"
               width={22}
             />
             <h1 className="text-xl font-semibold">Bazario</h1>
-          </div>
+          </Link>
 
           <div className="flex flex-col gap-3 mt-4 px-2">
             {items.map((v) => (

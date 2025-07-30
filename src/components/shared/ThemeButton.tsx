@@ -3,7 +3,6 @@ import { Moon, Sun } from "lucide-react";
 
 const ThemeButton = () => {
   const { theme, setTheme } = useTheme();
-  console.log({ theme });
   const handleTheme = () => {
     const value = theme === "light" ? "dark" : "light";
     setTheme(value);

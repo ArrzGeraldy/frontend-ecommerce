@@ -17,8 +17,6 @@ type NavItemProps = {
 };
 
 const NavItemsDesktop = ({ categories, isLoading }: NavItemProps) => {
-  // const { data, isLoading } = useCategories({ limit: 10, type: "tree" });
-
   if (isLoading) {
     return Array.from({ length: 4 }).map((_, i) => (
       <Skeleton key={i} className="w-14 h-4 bg-input rounded-md my-2.5" />
@@ -29,7 +27,7 @@ const NavItemsDesktop = ({ categories, isLoading }: NavItemProps) => {
       <NavigationMenuList>
         <NavigationMenuItem>
           <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-            <Link to={"#"}>New Arrival</Link>
+            <a href="#newest">New Arrival</a>
           </NavigationMenuLink>
         </NavigationMenuItem>
 
@@ -45,7 +43,7 @@ const NavItemsDesktop = ({ categories, isLoading }: NavItemProps) => {
                     </NavigationMenuLink>
                   </li>
                   {category.children.map((c) => (
-                    <li>
+                    <li key={c.id}>
                       <NavigationMenuLink asChild>
                         <Link
                           to={`/products/${category.slug}?category=${c.id}`}

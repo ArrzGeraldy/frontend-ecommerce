@@ -1,12 +1,13 @@
 import ButtonLoader from "@/components/shared/ButtonLoader";
 import Spinner from "@/components/shared/Spinner";
+import useAuth from "@/hooks/useAuth";
 import { useAddCartItem } from "@/hooks/useCart";
 import { useProduct } from "@/hooks/useProduct";
 import { calculateDiscount, cn, toRupiah } from "@/lib/utils";
 import { Minus, Plus } from "lucide-react";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -15,8 +16,13 @@ const ProductDetail = () => {
   const [variantSelect, setVariantSelect] = useState<number>();
   const [stock, setStock] = useState<number>();
   const { mutateAsync, isPending } = useAddCartItem();
-
+  const { auth } = useAuth();
+  const navigate = useNavigate();
   const handleAddCartItem = async () => {
+    if (!auth?.accessToken) {
+      navigate("/login");
+      return;
+    }
     if (!variantSelect) {
       toast.error("Please select the variant");
       return;
@@ -89,6 +95,7 @@ const ProductDetail = () => {
             <div className="grid grid-cols-5 gap-4 mt-4">
               {product.product_variants.map((v) => (
                 <button
+                  key={v.id}
                   onClick={() => {
                     setVariantSelect(v.id);
                     setStock(v.stock);
@@ -103,10 +110,6 @@ const ProductDetail = () => {
               ))}
             </div>
           </div>
-
-          {/* <div className="mt-8">
-            <p className="font-medium">Quantiy</p>
-          </div> */}
 
           <div className="mt-8 flex items-center gap-4 ">
             <div className="flex gap-4 border border-ring w-fit px-4 py-2 rounded-full">

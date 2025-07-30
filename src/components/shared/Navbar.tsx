@@ -48,7 +48,10 @@ const Navbar = () => {
             <SheetTrigger className="md:hidden">
               <AlignJustify />
             </SheetTrigger>
-            <SheetContent side="left">
+            <SheetContent
+              side="left"
+              className="h-full overflow-auto custom-scroll"
+            >
               <SheetHeader>
                 <SheetTitle className="text-2xl font-bold flex items-center gap-2">
                   <span>Bazario</span>
@@ -82,10 +85,13 @@ const Navbar = () => {
                   ) : (
                     data?.data &&
                     data.data.map((category: CategoryTreeType, i: number) => (
-                      <div key={category.id} className="">
+                      <div
+                        key={category.id}
+                        className="border-b border-muted-foreground pb-2 mt-2"
+                      >
                         <button
                           onClick={() => toogle(i)}
-                          className="flex items-center justify-between w-full  py-3"
+                          className="flex items-center justify-between w-full "
                         >
                           <span className="font-medium">{category.name}</span>
                           <ChevronRight
@@ -98,14 +104,21 @@ const Navbar = () => {
 
                         <div
                           className={cn(
-                            "flex flex-col space-y-2 text-sm ease-in duration-200 overflow-hidden",
+                            "flex flex-col space-y-2 text-sm ease-in duration-200 overflow-hidden text-foreground/80",
                             categoryOpens.includes(i)
-                              ? "max-h-[400px] opacity-100"
+                              ? "max-h-[400px] opacity-100 mt-2 mb-2"
                               : "max-h-0 opacity-0"
                           )}
                         >
+                          <Link to={`/products/${category.slug}`}>
+                            View All
+                          </Link>
                           {category.children.map((c: BaseCategory) => (
-                            <Link key={c.id} to={"#"}>
+                            <Link
+                              key={c.id}
+                              className="hover:text-foreground transition-all"
+                              to={`/products/${category.slug}?category=${c.id}`}
+                            >
                               {c.name}
                             </Link>
                           ))}
