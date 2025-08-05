@@ -1,7 +1,6 @@
 import DesktopCartList from "@/components/cart/DesktopCartList";
 import MobileCartList from "@/components/cart/MobileCartList";
 import DialogDelete from "@/components/DialogDelete";
-import EmptyData from "@/components/shared/EmptyData";
 import Spinner from "@/components/shared/Spinner";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
