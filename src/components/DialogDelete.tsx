@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "./ui/button";
 import type { TargetToDeleteType } from "@/types";
-import React, { useEffect } from "react";
+import React from "react";
 import ButtonLoader from "./shared/ButtonLoader";
 
 type DialogDeleteProps = {
@@ -26,9 +26,6 @@ const DialogDelete = React.memo(
     handleDelete,
     targetToDelete,
   }: DialogDeleteProps) => {
-    useEffect(() => {
-      console.log("dialog delete render");
-    });
     return (
       <Dialog open={open}>
         <DialogContent showCloseButton={false}>

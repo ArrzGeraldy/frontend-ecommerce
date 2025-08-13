@@ -1,6 +1,7 @@
 import DesktopCartList from "@/components/cart/DesktopCartList";
 import MobileCartList from "@/components/cart/MobileCartList";
 import DialogDelete from "@/components/DialogDelete";
+import ButtonLoader from "@/components/shared/ButtonLoader";
 import Spinner from "@/components/shared/Spinner";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -18,7 +19,7 @@ import { useNavigate } from "react-router-dom";
 const Cart = () => {
   const { data, isLoading, refetch } = useCartItems();
   const isMobile = useIsMobile();
-  const { mutateAsync } = useCreateOrder();
+  const { mutateAsync, isPending: checkOutLoading } = useCreateOrder();
   const navigate = useNavigate();
 
   const [open, setOpen] = useState(false);
@@ -139,7 +140,9 @@ const Cart = () => {
             <p className="font-semibold">Cart Total</p>
             <span className="font-semibold">{toRupiah(calculateTotal())}</span>
           </div>
-          <Button onClick={handleChekout}>Checkout</Button>
+          <ButtonLoader onClick={handleChekout} disabled={checkOutLoading}>
+            Checkout
+          </ButtonLoader>
         </Card>
       </div>
     </div>

@@ -30,7 +30,7 @@ const Payment = () => {
   return (
     <div className="wrapper w-full flex-1 flex items-center justify-center ">
       {data?.data?.payment?.status === "settlement" ? (
-        <SuccessPayment orderId={data.data.order_id} />
+        <SuccessPayment orderId={data.data.id} />
       ) : (
         <PaymentCardInfo
           final_price={data.data.final_price}
